@@ -6,12 +6,6 @@
 
 Application to write, save, and delete notes. This app uses Express backend to save and retrieve note data to and from a JSON file.
 
-
-## Table of Contents
-
-* [deployedSite](#Deployed Site)
-* [Usage](#Usage)
-
 ## Deployed Site
 [Take-a-note](https://cryptic-anchorage-46064.herokuapp.com/)
 
