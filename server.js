@@ -20,7 +20,7 @@ app.get("/notes", function(req, res) {
 });
 
 app.get("/api/notes", function(req, res) {
-    // console.log("yes");
+    
     res.json(data);
 });
 
@@ -28,11 +28,18 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
     const newNote = req.body;
-    const id = data[data.length-1].id + 1;
-    newNote.id = id;
-
+    let id = function(){
+        if(!data.length) {
+            id = 0;
+        } else {
+            id = data[data.length-1].id + 1;        
+        }
+        return id;
+    }
+    newNote.id = id();
+   
     data.push(newNote);
-    // console.log(newNote);
+    
     
     fs.writeFile(__dirname + "/db/db.json", JSON.stringify(data), "utf8", function(err) {
         if (err) return (err);
@@ -45,36 +52,20 @@ app.post("/api/notes", function(req, res) {
 app.delete("/api/notes/:id", function(req, res) {
     
     let idDeleteRequest = parseInt(req.params.id);
-    // console.log(req.params.id);
-    // console.log(idDeleteRequest);
-
-    fs.readFile("./db/db.json", "utf8", function (err, data) {
-        console.log("read file works")
+    
         for (let i = 0; i < data.length; i++) {
             
             if (idDeleteRequest === data[i].id) {
-                const newData = data.splice(data[i].id, 1);
-                console.log("yayyyy");
-                // fs.writeFile("./db/db.json", JSON.stringify(newData), "utf8", function (err) {
-                //     if (err) throw (err)
-                // })                
+                const newData = data.splice(i, 1);
+                
+                fs.writeFile("./db/db.json", JSON.stringify(newData), "utf8", function (err) {
+                    if (err) return (err)
+                })                
             }
         }
-    })
-
     res.json(data);
 });
 
-
-
- 
-
-
-
-
-
-
-//listener
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
