@@ -13,7 +13,7 @@ Application to write, save, and delete notes. This app uses Express backend to s
 * [Usage](#Usage)
 
 ## Deployed Site
-[herokusite](https://cryptic-anchorage-46064.herokuapp.com/)
+[Take-a-note](https://cryptic-anchorage-46064.herokuapp.com/)
 
 ## Usage
 Keep track of your thoughts and tasks!
