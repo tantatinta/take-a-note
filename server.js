@@ -30,7 +30,7 @@ app.post("/api/notes", function(req, res) {
     const newNote = req.body;
     let id = function(){
         if(!data.length) {
-            id = 0;
+            id = 1;
         } else {
             id = data[data.length-1].id + 1;        
         }
